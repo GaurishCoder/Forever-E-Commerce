@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap');
+@import "tailwindcss";
+
+
+*{
+    font-family: "Outfit", sans-serif;
+}
+
+.prata-font{
+    font-family: "Prata", serif;
+
+}
+
+.active{
+    width: 100%;
+}
+
+.bg-active{
+    background-color: black;
+    color: white;
+}
+
+.gray{
+    color: #6A7282;
+}
+
+.Toastify__toast{
+    font-family: "Outfit", sans-serif;
+    font-weight: 500;
+   
+}
