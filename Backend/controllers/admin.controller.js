@@ -12,8 +12,8 @@ const adminLogin = (req, res) => {
     const token = jwt.sign(email, process.env.JWT_SECRET);
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false,
-      sameSite: "Lax",
+      secure: true,
+      sameSite: "None",
       maxAge:24*60*60*1000
     });
     res.status(200).json({ message: "Admin Logged In", token: token });
@@ -26,8 +26,8 @@ const adminLogin = (req, res) => {
 const adminLogout = (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    secure: false,       // if you're using HTTPS
-    sameSite: "Lax", // or "Lax" depending on your setup
+    secure: true,       // if you're using HTTPS
+    sameSite: "None", // or "Lax" depending on your setup
   });
   res.status(200).json({ message: "Logout successful" });
 };

@@ -24,7 +24,7 @@ const registerUser = async (req, res) => {
       httpOnly: true,
       secure: false,
       sameSite: "Lax",
-      maxAge:24*60*60*1000
+      maxAge: 24 * 60 * 60 * 1000,
     });
     res.status(200).json({ message: "User Created", user: userData });
   } catch (error) {
@@ -55,14 +55,18 @@ const loginUser = async (req, res) => {
     let token = userExists.generateToken(userPayload);
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false,
-      sameSite: "Lax",
-      maxAge:24*60*60*1000
+      secure: true, // ✅ Set to true for HTTPS
+      sameSite: "None", // ✅ Needed for cross-origin frontend/backend
+      maxAge: 24 * 60 * 60 * 1000,
     });
 
     let username = userExists.name;
 
-    res.status(200).json({ message: "User Logged In!!", user: userExists , username:username});
+    res.status(200).json({
+      message: "User Logged In!!",
+      user: userExists,
+      username: username,
+    });
   } catch (error) {
     console.log(error);
     res.status(401).json({ message: error.message });
@@ -85,13 +89,14 @@ const verifyUser = (req, res) => {
 const logoutUser = (req, res) => {
   try {
     res.clearCookie("token", {
-      secure: false,
+      secure: true,
       httpOnly: true,
+      sameSite: "None",
     });
-    res.status(200).json({message:"Logout Successfully"});
+    res.status(200).json({ message: "Logout Successfully" });
   } catch (error) {
     console.log(error);
-    res.status(400).json({message:"User not found"});
+    res.status(400).json({ message: "User not found" });
   }
 };
 
