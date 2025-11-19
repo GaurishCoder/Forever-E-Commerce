@@ -1,17 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { ShoppingContext } from "../context/ShoppingStore";
 
 const Signup = () => {
   const [visible, setVisible] = useState(false);
+  const { setToken } = useContext(ShoppingContext);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
   });
-
 
   const handleFormData = (e) => {
     let { name, value } = e.target;
@@ -26,7 +27,12 @@ const Signup = () => {
         formData,
         { withCredentials: true }
       );
-      toast.success("User Register!!");
+      let username = response.data.username;
+      if(response.status===200){
+        localStorage.setItem("username",username);
+        setToken(true);
+        toast.success("Account created successfully! 🎉");
+      }
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -68,17 +74,21 @@ const Signup = () => {
             className="w-full border px-4 py-2 mb-2 outline-none"
           />
           {visible ? (
-              <i className="ri-eye-off-line absolute top-2 right-4" onClick={()=> setVisible(false)}></i>
-            ) : (
-              <i className="ri-eye-line absolute top-2 right-4" onClick={()=> setVisible(true)}></i>
-            )}
+            <i
+              className="ri-eye-off-line absolute top-2 right-4"
+              onClick={() => setVisible(false)}
+            ></i>
+          ) : (
+            <i
+              className="ri-eye-line absolute top-2 right-4"
+              onClick={() => setVisible(true)}
+            ></i>
+          )}
         </p>
 
-        <div className="flex justify-between text-sm mb-4">
-          <Link to="/forgot" className="text-gray-700 ">
-            Forgot your password?
-          </Link>
-          <Link to="/login" className="text-gray-700 ">
+        <div className="flex justify-end text-sm mb-4">
+          
+          <Link to="/login" className="text-gray-700 text-[18px]">
             Login Here
           </Link>
         </div>

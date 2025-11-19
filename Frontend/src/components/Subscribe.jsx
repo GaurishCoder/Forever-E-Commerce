@@ -2,12 +2,11 @@ import React from "react";
 
 function Subscribe() {
   return (
-    <div className="w-full  flex flex-col items-center my-6 py-3 gap-10"> 
+    <div className="w-full  flex flex-col items-center my-6 py-10 gap-10"> 
       <div className="section-1 flex flex-col justify-center items-center gap-3">
         <h3 className="text-gray-900 font-medium text-2xl">Subscribe now & get 20% off</h3>
         <p className="gray text-md">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry.
+          This Subscription 
         </p>
       </div>
       <div className="section-2  w-full flex items-center justify-center ">

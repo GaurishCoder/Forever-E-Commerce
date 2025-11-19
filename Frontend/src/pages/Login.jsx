@@ -20,6 +20,7 @@ const Login = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/user/login`,
@@ -32,7 +33,7 @@ const Login = () => {
         setToken(true);
         setUsername(username);
       }
-      toast.success("User LoggedIn!!");
+      toast.success("Successfully logged in.");
       
       navigate("/");
     } catch (error) {
@@ -78,11 +79,9 @@ const Login = () => {
             ></i>
           )}
         </p>
-        <div className="flex justify-between text-sm mb-4">
-          <Link to="/forgot" className="text-gray-700 ">
-            Forgot your password?
-          </Link>
-          <Link to="/signup" className="text-gray-700 ">
+        <div className="flex justify-end text-sm mb-4">
+          
+          <Link to="/signup" className="text-gray-700 text-[18px] ">
             Create account
           </Link>
         </div>

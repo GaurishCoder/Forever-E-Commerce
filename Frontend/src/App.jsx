@@ -32,8 +32,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/verify" element={<Verify />} />
+        
       </Routes>
-      <ToastContainer autoClose={2000}/>
+      <ToastContainer autoClose={1500}/>
       <Footer />
     </div>
   );

@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { products } from "../assets/frontend_assets/assets";
 import { ShoppingContext } from "../context/ShoppingStore";
-import {Link} from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom";
 
-function ProductItem({ id,img, title, price }) {
+function ProductItem({ id, img, title, price }) {
   const { currency } = useContext(ShoppingContext);
+  
 
   return (
     <>

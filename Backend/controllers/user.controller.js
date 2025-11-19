@@ -26,7 +26,7 @@ const registerUser = async (req, res) => {
       sameSite: "Lax",
       maxAge: 24 * 60 * 60 * 1000,
     });
-    res.status(200).json({ message: "User Created", user: userData });
+    res.status(200).json({ message: "User Created", user: userData , username:name });
   } catch (error) {
     console.log(error);
     res.status(401).json({ message: error.message });
@@ -36,6 +36,7 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
   try {
     let { email, password } = req.body;
+    
     let userExists = await User.findOne({ email });
     if (!userExists) {
       return res.status(401).json({ message: "Invalid email or password" });

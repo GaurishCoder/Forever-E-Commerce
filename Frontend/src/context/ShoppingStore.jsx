@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 export const ShoppingContext = createContext();
 
@@ -43,7 +43,6 @@ const ShoppingContextProvider = ({ children }) => {
         setToken(false);
       }
     } catch (err) {
-      console.error("Token verify error:", err);
       setToken(false);
     }
   };
@@ -60,6 +59,8 @@ const ShoppingContextProvider = ({ children }) => {
         setCartItems({});
         setCartCount(0);
         navigate("/login");
+        toast.success("Logout Successful!");
+        <ToastContainer autoClose={500}/>
       }
     } catch (err) {
       console.error("Logout error:", err);

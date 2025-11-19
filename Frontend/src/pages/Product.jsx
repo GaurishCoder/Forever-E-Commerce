@@ -7,13 +7,20 @@ import ProductItem from "../components/ProductItem";
 
 function ProductPage() {
   const { productId } = useParams();
-  const { products, currency, addToCart, setToken,cartItems } =
+  const { products, currency, addToCart, setToken, cartItems } =
     useContext(ShoppingContext);
   const [productItem, setProductItem] = useState({});
   const [relatedProduct, setRelatedProduct] = useState([]);
   const [selectSize, setSelectSize] = useState(false);
   const [size, setSize] = useState("");
   const [image, setImage] = useState("");
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [productId]);
 
   const fetchData = () => {
     if (products.length > 0) {
@@ -26,8 +33,7 @@ function ProductPage() {
 
   useEffect(() => {
     fetchData();
-  }, [products,addToCart,cartItems])
-  
+  }, [products, addToCart, cartItems]);
 
   const relatedProductData = () => {
     let productCopy = products.slice();

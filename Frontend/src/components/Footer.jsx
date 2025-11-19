@@ -3,7 +3,7 @@ import { assets } from "../assets/frontend_assets/assets";
 
 function Footer() {
   return (
-    <div className="w-full mt-15">
+    <div className="w-full mt-8">
       <div className="section1 py-10 w-full flex flex-col sm:flex-row justify-between gap-10 sm:gap-1 break-all">
         <div className="box1 flex flex-col items-start gap-5">
           <div className="img">

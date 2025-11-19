@@ -33,6 +33,7 @@ function Navbar() {
       setDropdown(true);
     }
   };
+  
 
   useEffect(() => {
     if (token) {
