@@ -9,11 +9,8 @@ function Footer() {
           <div className="img">
             <img src={assets.logo} className="w-35" alt="" />
           </div>
-          <div className="text max-w-[30rem]  gray text-sm break-all">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book.
+          <div className="text max-w-[35rem]  gray text-sm break-all">
+           Built on quality and trust, we aim to deliver products that make everyday living better.From careful sourcing to thoughtful design, each step is taken with our customers in mind. We are proud to be a brand that values reliability, comfort, and long-term satisfaction.
           </div>
         </div>
         <div className="box2 flex flex-col items-start gap-5">

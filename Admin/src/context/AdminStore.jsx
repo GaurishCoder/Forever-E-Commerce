@@ -14,6 +14,8 @@ const AdminContextProvider = ({ children }) => {
         }
       );
       let data = response.data.success;
+      console.log(data);
+      
       setToken(data);
     } catch (error) {
       setToken(false);

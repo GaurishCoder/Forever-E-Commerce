@@ -14,11 +14,18 @@ const ShoppingContextProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState({});
   const [token, setToken] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    getProductData();
-    fetchToken();
+    const fetchData = async () => {
+      setLoading(true);
+      await getProductData();
+      await fetchToken();
+      setLoading(false);
+    };
+
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -30,7 +37,6 @@ const ShoppingContextProvider = ({ children }) => {
     }
   }, [token]);
 
-  // ✅ Fetch token and verify login
   const fetchToken = async () => {
     try {
       const res = await axios.get(
@@ -38,7 +44,7 @@ const ShoppingContextProvider = ({ children }) => {
         { withCredentials: true }
       );
       if (res.data.success) {
-        setToken(true); // This will trigger getCartCount via useEffect
+        setToken(true);
       } else {
         setToken(false);
       }
@@ -60,7 +66,7 @@ const ShoppingContextProvider = ({ children }) => {
         setCartCount(0);
         navigate("/login");
         toast.success("Logout Successful!");
-        <ToastContainer autoClose={500}/>
+        <ToastContainer autoClose={500} />;
       }
     } catch (err) {
       console.error("Logout error:", err);
@@ -199,6 +205,8 @@ const ShoppingContextProvider = ({ children }) => {
     products,
     token,
     setToken,
+    loading,
+    setLoading,
     handleLogout,
     cartItems,
     setCartItems,

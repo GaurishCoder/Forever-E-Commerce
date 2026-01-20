@@ -4,6 +4,8 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { ShoppingContext } from "../context/ShoppingStore.jsx";
 import { useEffect } from "react";
 
+const adminUrl = import.meta.env.VITE_ADMIN_URL;
+
 function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
   const [dropdown, setDropdown] = useState(false);
@@ -128,6 +130,11 @@ function Navbar() {
                   }}
                 >
                   Logout
+                </p>
+              </Link>
+               <Link to={adminUrl} onClick={() => setDropdown(false)}>
+                <p className="text-md text-gray-600 hover:text-gray-800 hover:font-medium ">
+                  Admin
                 </p>
               </Link>
             </div>

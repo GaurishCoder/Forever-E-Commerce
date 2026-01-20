@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: ["https://forever-frontend-seven-phi.vercel.app", "https://forever-e-commerce-admin-smoky.vercel.app","http://localhost:5173"],
+    origin: ["https://forever-frontend-seven-phi.vercel.app", "https://forever-e-commerce-admin-smoky.vercel.app","http://localhost:5173","http://localhost:5174"],
     credentials: true,
   })
 );

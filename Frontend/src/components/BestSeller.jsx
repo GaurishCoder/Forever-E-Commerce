@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ShoppingContext } from "../context/ShoppingStore";
 import ProductItem from "./ProductItem";
+import Loading from "./Loading";
 
 function BestSeller() {
   const [items, setItems] = useState([]);
-  const { products } = useContext(ShoppingContext);
+  const { products, loading } = useContext(ShoppingContext);
 
   useEffect(() => {
     if (products.length > 0) {
@@ -14,7 +15,7 @@ function BestSeller() {
       setItems(value);
     }
   }, [products]);
-  
+
   return (
     <div>
       <div className="text-content mt-4 sm:mt-10 py-5 md:py-5 flex flex-col items-center justify-center gap-2 md:gap-4 ">
@@ -25,21 +26,24 @@ function BestSeller() {
           <div className="line w-10 border text-black"></div>
         </div>
         <p className="text-sm sm:text-base text-gray-500 text-center mb-2">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the.
+         Shop our best sellers, trusted by thousands and crafted to deliver lasting value.
         </p>
       </div>
-      <div className="grid-box grid grid-row-2 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 p-2">
-        {items.map((e) => (
-          <ProductItem
-            key={e._id}
-            img={e.images[0].url}
-            title={e.name}
-            price={e.price}
-            id={e._id}
-          />
-        ))}
-      </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="grid-box grid grid-row-2 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 p-2">
+          {items.map((e) => (
+            <ProductItem
+              key={e._id}
+              img={e.images[0].url}
+              title={e.name}
+              price={e.price}
+              id={e._id}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

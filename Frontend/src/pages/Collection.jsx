@@ -2,10 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { ShoppingContext } from "../context/ShoppingStore";
 import ProductItem from "../components/ProductItem";
 import { HashRouter } from "react-router-dom";
+import Loading from "../components/Loading";
 
 function Collection() {
-  const { products, search, setSearch, showSearch } =
-    useContext(ShoppingContext);
+  const { products, search, loading, showSearch } = useContext(ShoppingContext);
   const [visible, setVisible] = useState(false);
   const [filterItems, setFilterItems] = useState([]);
   const [category, setCategory] = useState([]);
@@ -18,7 +18,6 @@ function Collection() {
 
   const handleSortOption = (e) => {
     setSortOption(e.target.value);
-    
   };
 
   const applyFilter = () => {
@@ -84,7 +83,7 @@ function Collection() {
 
   useEffect(() => {
     applyFilter();
-  }, [category, subCategory, search, products , sortOption]);
+  }, [category, subCategory, search, products, sortOption]);
 
   return (
     <div className="w-full flex flex-col sm:flex-row  items-start ">
@@ -204,17 +203,21 @@ function Collection() {
             </select>
           </div>
         </div>
-        <div className="grid-box grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  mt-3 gap-4 px-2">
-          {filterItems.map((e) => (
-            <ProductItem
-              key={e._id}
-              img={e.images[0].url}
-              price={e.price}
-              title={e.name}
-              id={e._id}
-            />
-          ))}
-        </div>
+        {loading ? (
+          <Loading />
+        ) : (
+          <div className="grid-box grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  mt-3 gap-4 px-2">
+            {filterItems.map((e) => (
+              <ProductItem
+                key={e._id}
+                img={e.images[0].url}
+                price={e.price}
+                title={e.name}
+                id={e._id}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
